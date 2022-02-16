@@ -17,5 +17,13 @@ search
 --------if (OperatorType.isBinary(operator))
 ----------filterList.add(new ApiRequestFilter(operator, field, Lists.newArrayList(values)));
 ----convertRepositoryData(apiRequest, ZhbSearchIndexEntity.class, apiRequestPage)
-
+------NativeSearchQuery nativeSearchQuery = new NativeSearchQueryBuilder().withQuery(convertQueryBuilder(apiRequest)).withPageable(convertPageable(apiRequestPage)).withSourceFilter(sourceFilter).build();
+------searchHits = elasticsearchRestTemplate.search(nativeSearchQuery, c);
+------List<E> collect = searchHits.stream().map(SearchHit::getContent).collect(Collectors.toList());
+------convertApiResponse(new PageImpl<>(collect, convertPageable(apiRequestPage), searchHits.getTotalHits()), c);
+--------ApiResponse<E> apiResponse = new ApiResponse<>();                      
+--------apiResponse.setPage(page.getNumber());                                 
+--------apiResponse.setPageSize(page.getSize());                               
+--------apiResponse.setTotal(page.getTotalElements());                         
+--------apiResponse.setPagedData(BeanMapping.mapList(page.getContent(), c));   
 ```
