@@ -19,7 +19,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-    
     @Select("Select * from user")
     List<User> selectAll();
 

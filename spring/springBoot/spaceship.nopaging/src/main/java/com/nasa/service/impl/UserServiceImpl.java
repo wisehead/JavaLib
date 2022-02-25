@@ -1,12 +1,15 @@
 package com.nasa.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-//import com.nasa.dao.PermissionDao;
-//import com.nasa.dao.RoleDao;
+//import com.github.pagehelper.PageHelper;
+//import com.github.pagehelper.PageInfo;
 import com.nasa.dao.UserDao;
-//import com.nasa.model.Permission;
-//import com.nasa.model.Role;
+/*
+import com.nasa.dao.PermissionDao;
+import com.nasa.dao.RoleDao;
+import com.nasa.dao.UserDao;
+import com.nasa.model.Permission;
+import com.nasa.model.Role;
+*/
 import com.nasa.model.User;
 import com.nasa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
+	
     @Autowired
     private UserDao userDao;
     /*
@@ -31,9 +35,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User selectByPrimaryKey(Integer id) {
-        return userDao.selectByPrimaryKey(id);
+		return null;
+        //return userDao.selectByPrimaryKey(id);
     }
-
+    /*
     @Override
     public PageInfo<User> selectAll(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum, pageSize);
@@ -41,38 +46,49 @@ public class UserServiceImpl implements UserService {
         PageInfo<User> pageInfo = new PageInfo<>(users);
         return pageInfo;
     }
+	*/
+    @Override
+    public List<User> selectAll() {
+        //PageHelper.startPage(pageNum, pageSize);
+        List<User> users = userDao.selectAll();
+        //PageInfo<User> pageInfo = new PageInfo<>(users);
+        return users;
+    }
 
     @Override
     public User validateUser(String username, String password) {
-        return userDao.selectByUsernamePass(username, password);
+		return null;
+        //return userDao.selectByUsernamePass(username, password);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
+		return 0;
         //return userDao.deleteByPrimaryKey(id);
-    	return 0;
     }
 
     @Override
     public int insertSelective(User record) {
+		return 0;
         //return userDao.insertSelective(record);
-        return 0;
     }
 
     @Override
     public int updateByPrimaryKeySelective(User record) {
+		return 0;
         //return userDao.updateByPrimaryKeySelective(record);
-    	return 0;
     }
 
     @Override
     public User selectByUsername(String username) {
+		return null;
         //return userDao.selectByUsername(username);
-    	return null;
     }
-/*
+
     @Override
     public User findRoleAndPermissions(User user) {
+		return user;
+    	/*
         List<Role> roleList = roleDao.selectRoleByUserId(user.getId());
         user.setRoleList(roleList);
 
@@ -84,12 +100,6 @@ public class UserServiceImpl implements UserService {
         }
         user.setPermissionList(permissions);
         return user;
+        */
     }
-    */
-
-	@Override
-	public User findRoleAndPermissions(User user) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
