@@ -2,6 +2,9 @@ package com.nasa.controller;
 import com.github.pagehelper.PageInfo;
 import com.nasa.model.User;
 import com.nasa.service.UserService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +25,14 @@ public class UserController {
     }
 
     @RequestMapping("/userlist")
-    public String getUserList(Model model, PageInfo pageInfo){
-        int pageNum  = (pageInfo.getPageNum() == 0)? 1 : pageInfo.getPageNum();
-        int pageSize  = (pageInfo.getPageSize() == 0)? 10 : pageInfo.getPageSize();
-        PageInfo<User> result = userService.selectAll(pageNum, pageSize);
-        model.addAttribute("users", result.getList());
-        model.addAttribute("pageInfo", result);
+    //public String getUserList(Model model, PageInfo pageInfo){
+    public String getUserList(Model model){
+        //int pageNum  = (pageInfo.getPageNum() == 0)? 1 : pageInfo.getPageNum();
+        //int pageSize  = (pageInfo.getPageSize() == 0)? 10 : pageInfo.getPageSize();
+        //PageInfo<User> result = userService.selectAll(pageNum, pageSize);
+    	List<User> result = userService.selectAll();
+        //model.addAttribute("users", result.getList());
+        //model.addAttribute("pageInfo", result);
         return "userlist";
     }
 
