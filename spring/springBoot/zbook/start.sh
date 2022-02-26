@@ -5,4 +5,4 @@
 # Create Time: 2022/02/24-19:55:54
 #############################################################
 #!/bin/sh 
-./mvnw spring-boot:run -e
+./mvnw spring-boot:run 
