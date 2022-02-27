@@ -26,6 +26,8 @@ public class UserController {
         int pageNum  = (pageInfo.getPageNum() == 0)? 1 : pageInfo.getPageNum();
         int pageSize  = (pageInfo.getPageSize() == 0)? 10 : pageInfo.getPageSize();
         PageInfo<User> result = userService.selectAll(pageNum, pageSize);
+        int pages = result.getPages();
+        System.out.println("pages in getUserList():"+pages);
         model.addAttribute("users", result.getList());
         model.addAttribute("pageInfo", result);
         return "userlist";
