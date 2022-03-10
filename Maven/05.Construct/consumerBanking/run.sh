@@ -5,4 +5,6 @@
 # Create Time: 2022/03/10-15:55:16
 #############################################################
 #!/bin/sh 
-mvn clean package
+mvn clean compile
+cd target/classes
+java -cp . com.companyname.bank.App
