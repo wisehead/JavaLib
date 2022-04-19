@@ -45,3 +45,10 @@ validateToken
 --if(isTokenValid && !noneExpireExtend)
 ----redisUtils.set(REDIS_TOKEN_NORMAL_KEY + user.getId().toString(), token, Constants.JWT.TOKEN_CACHE_EXPIRE_SECONDS);
 ```
+
+#5.generateToken
+
+```
+generateToken
+--
+```
