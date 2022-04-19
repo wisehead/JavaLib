@@ -34,4 +34,14 @@ validateToken
 ----return false;
 --username = getUsernameFromToken(token);
 --created = getCreatedDateFromToken(token);
+--Boolean isTokenValid =  (username.equals(user.getUsername())
+                && !isTokenExpired(token)
+                && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate()));
+----isTokenExpired
+------expiration = getExpirationDateFromToken(token);
+------return expiration.before(new Date());
+----isCreatedBeforeLastPasswordReset
+------return (lastPasswordReset != null && created.before(lastPasswordReset));
+--if(isTokenValid && !noneExpireExtend)
+----redisUtils.set(REDIS_TOKEN_NORMAL_KEY + user.getId().toString(), token, Constants.JWT.TOKEN_CACHE_EXPIRE_SECONDS);
 ```
