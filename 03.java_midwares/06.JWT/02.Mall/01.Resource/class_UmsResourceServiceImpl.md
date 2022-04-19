@@ -59,6 +59,24 @@ public class UmsResourceServiceImpl implements UmsResourceService {
         return resourceMapper.selectByExample(new UmsResourceExample());
     }
 }
+```
 
+#2.mybatis
+mall-mbg/src/main/resources/com/macro/mall/mapper/UmsResourceMapper.xml
 
+```
+  <select id="selectByExample" parameterType="com.macro.mall.model.UmsResourceExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ums_resource
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
 ```
