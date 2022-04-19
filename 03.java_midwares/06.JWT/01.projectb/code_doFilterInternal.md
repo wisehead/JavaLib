@@ -14,6 +14,7 @@ doFilterInternal
 ------if (jwtTokenUtil.validateToken(token, user, isWhiteList)) 
 --------UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
 --------authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+--------SecurityContextHolder.getContext().setAuthentication(authentication);
 ```
 
 #2.JWT config
