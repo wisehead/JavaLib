@@ -10,7 +10,7 @@ doFilterInternal
 ------Claims claims = getClaimsFromToken(token);
 ------username = claims.getSubject();
 ----if (username != null && SecurityContextHolder.getContext().getAuthentication() == null)
-------
+------User user = (User) userDetailsService.loadUserByUsername(username);
 ```
 
 #2.JWT config
