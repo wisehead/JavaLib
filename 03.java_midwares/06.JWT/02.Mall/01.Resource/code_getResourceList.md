@@ -6,7 +6,7 @@ UmsAdminServiceImpl::getResourceList
 ----String key = REDIS_DATABASE + ":" + REDIS_KEY_RESOURCE_LIST + ":" + adminId;
 ----return (List<UmsResource>) redisService.get(key);
 --adminRoleRelationDao.getResourceList(adminId);
-----
+----mybatis.getResourceList
 --adminCacheService.setResourceList(adminId,resourceList);
 ```
 
