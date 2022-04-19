@@ -3,7 +3,14 @@
 ```
 doFilterInternal
 --token = request.getHeader(Constants.JWT.TOKEN_HEADER);
---
+--if (token != null && token.startsWith(Constants.JWT.TOKEN_HEAD))
+----token = token.replace(Constants.JWT.TOKEN_HEAD, "").trim();
+----boolean isWhiteList = request.getRequestURL().toString().endsWith(TOKEN_BALCK_LIST);
+----username = jwtTokenUtil.getUsernameFromToken(token);
+------Claims claims = getClaimsFromToken(token);
+------username = claims.getSubject();
+----if (username != null && SecurityContextHolder.getContext().getAuthentication() == null)
+------
 ```
 
 #2.JWT config
