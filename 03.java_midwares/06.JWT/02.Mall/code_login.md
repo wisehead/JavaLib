@@ -8,4 +8,12 @@ login
 --UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
 --SecurityContextHolder.getContext().setAuthentication(authentication);
 --token = jwtTokenUtil.generateToken(userDetails);
+--insertLoginLog(username);
+```
+
+#2.insertLoginLog
+
+```
+insertLoginLog
+--admin = getAdminByUsername(username);
 ```
