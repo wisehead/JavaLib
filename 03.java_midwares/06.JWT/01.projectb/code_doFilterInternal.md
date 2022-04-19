@@ -17,3 +17,12 @@ doFilterInternal
 --------SecurityContextHolder.getContext().setAuthentication(authentication);
 ```
 
+#2.signinCheckUsernameAndPassword
+
+```
+signinCheckUsernameAndPassword
+--UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(signVo.getUseremail(), signVo.getPassword());
+--Authentication authentication = manager.authenticate(authenticationToken);
+--SecurityContextHolder.getContext().setAuthentication(authentication);
+```
+

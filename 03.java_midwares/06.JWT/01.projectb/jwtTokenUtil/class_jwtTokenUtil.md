@@ -48,7 +48,23 @@ validateToken
 
 #5.generateToken
 
-```
+```java
 generateToken
---
+--Map<String, Object> claims = new HashMap<>();
+--claims.put(Constants.JWT.TOKEN_LAST_IP_NAME, user.getCurrentSignInIp());
+--claims.put(Constants.JWT.TOKEN_LAST_TIME_NAME, user.getCurrentSignInAt());
+--token = generateToken(user.getId(),user.getUsername(),claims);
+----token = Jwts.builder()
+                    .setClaims(claims)
+                    .setNotBefore(new Date())
+                    .setIssuedAt(new Date())
+                    .setId(userId.toString())
+                    .setSubject(userEmail)
+                    .setAudience(Constants.JWT.TOKEN_AUDIENCE)
+                    .setIssuer(Constants.JWT.TOKEN_ISSUER)
+                    .setExpiration(generateExpirationDate())
+                    .signWith(SignatureAlgorithm.HS512, Constants.JWT.TOKEN_SECURITY_KEY)
+                    .compact();
+                    
+--redisUtils.set(REDIS_TOKEN_NORMAL_KEY + user.getId().toString(),token,Constants.JWT.TOKEN_CACHE_EXPIRE_SECONDS);
 ```
