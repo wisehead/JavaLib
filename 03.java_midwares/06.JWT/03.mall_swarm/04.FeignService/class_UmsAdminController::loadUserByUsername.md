@@ -8,6 +8,9 @@ loadUserByUsername
 ------List<UmsRole> roleList = getRoleList(admin.getId());
 --------adminRoleRelationDao.getRoleList(adminId);
 ----------mybatis.sql
+------List<String> roleStrList = roleList.stream().map(item -> item.getId() + "_" + item.getName()).collect(Collectors.toList());
+------userDTO.setRoles(roleStrList);
+------return userDTO;
 ```
 
 #2.mybatis
