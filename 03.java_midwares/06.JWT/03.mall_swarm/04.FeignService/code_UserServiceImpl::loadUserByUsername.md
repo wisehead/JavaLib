@@ -9,5 +9,7 @@ loadUserByUsername
 --else
 ----userDto = memberService.loadUserByUsername(username);
 --userDto.setClientId(clientId);
+--SecurityUser securityUser = new SecurityUser(userDto);
+--return securityUser;
         
 ```
