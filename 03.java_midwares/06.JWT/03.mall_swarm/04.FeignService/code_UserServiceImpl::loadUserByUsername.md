@@ -8,5 +8,6 @@ loadUserByUsername
 ----userDto = adminService.loadUserByUsername(username);
 --else
 ----userDto = memberService.loadUserByUsername(username);
+--userDto.setClientId(clientId);
         
 ```
