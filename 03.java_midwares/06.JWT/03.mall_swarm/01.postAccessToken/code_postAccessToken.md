@@ -13,5 +13,27 @@
 postAccessToken
 --OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
 ----TokenEndpoint.postAccessToken
-------
+------TokenRequest tokenRequest = getOAuth2RequestFactory().createTokenRequest(parameters, authenticatedClient);
+------if (!StringUtils.hasText(tokenRequest.getGrantType())) {
+--------throw new InvalidRequestException("Missing grant type");
+------if (tokenRequest.getGrantType().equals("implicit")) {
+--------throw new InvalidGrantException("Implicit grant type not supported from token endpoint");
+------OAuth2AccessToken token = getTokenGranter().grant(tokenRequest.getGrantType(), tokenRequest);
+--Oauth2TokenDto oauth2TokenDto = Oauth2TokenDto.builder()
+                .token(oAuth2AccessToken.getValue())
+                .refreshToken(oAuth2AccessToken.getRefreshToken().getValue())
+                .expiresIn(oAuth2AccessToken.getExpiresIn())
+                .tokenHead(AuthConstant.JWT_TOKEN_PREFIX).build();
+--                	
+```
+
+#2.caller
+
+```
+login
+--params.put("client_id", AuthConstant.ADMIN_CLIENT_ID);//String ADMIN_CLIENT_ID = "admin-app";           
+--params.put("client_secret","123456");                            
+--params.put("grant_type","password");                             
+--params.put("username",username);                                 
+--params.put("password",password);       
 ```
