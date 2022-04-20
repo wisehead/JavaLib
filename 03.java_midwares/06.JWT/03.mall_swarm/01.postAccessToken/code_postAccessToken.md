@@ -12,4 +12,6 @@
 @RequestMapping(value = "/oauth/token", method = RequestMethod.POST)    
 postAccessToken
 --OAuth2AccessToken oAuth2AccessToken = tokenEndpoint.postAccessToken(principal, parameters).getBody();
+----TokenEndpoint.postAccessToken
+------
 ```
